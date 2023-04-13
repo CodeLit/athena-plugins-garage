@@ -3,7 +3,7 @@ import { GarageFunctions } from '../src/view';
 
 const garage = {
     position: { x: -1603.747314453125, y: -935.0883178710938, z: 8.2 },
-    type: VEHICLE_TYPE.VEHICLE,
+    type: VEHICLE_TYPE.CAR,
     index: 'del-perro-beach',
     parking: [
         {

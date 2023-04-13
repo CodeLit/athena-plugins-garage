@@ -1,12 +1,12 @@
 import * as alt from 'alt-server';
-import { PluginSystem } from '@AthenaServer/systems/plugins';
+import * as Athena from '@AthenaServer/api';
 import { GarageFunctions } from './src/view';
 import './src/garages';
 import { GarageSystem } from './src/system';
 
 const PLUGIN_NAME = 'Athena Garages';
 
-PluginSystem.registerPlugin(PLUGIN_NAME, () => {
+Athena.systems.plugins.registerPlugin(PLUGIN_NAME, () => {
     GarageSystem.init();
     GarageFunctions.init();
     alt.log(`~lg~${PLUGIN_NAME} was Loaded`);

@@ -3,7 +3,7 @@ import { GarageFunctions } from '../src/view';
 
 const garage = {
     position: { x: -1055.502685546875, y: -2646.731201171875, z: 13.3 },
-    type: VEHICLE_TYPE.VEHICLE,
+    type: VEHICLE_TYPE.CAR,
     index: 'los-santos-international-vehicle',
     parking: [
         {
