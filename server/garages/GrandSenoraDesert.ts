@@ -3,7 +3,7 @@ import { GarageFunctions } from '../src/view';
 
 const garage = {
     position: { x: 1183.4117431640625, y: 2700.958984375, z: 37.6 },
-    type: VEHICLE_TYPE.VEHICLE,
+    type: VEHICLE_TYPE.CAR,
     index: 'grand-senora-desert',
     parking: [
         {

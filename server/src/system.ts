@@ -1,17 +1,17 @@
 import * as alt from 'alt-server';
-import { Athena } from '@AthenaServer/api/athena';
-import { ATHENA_EVENTS_VEHICLE } from '@AthenaShared/enums/athenaEvents';
+import * as Athena from '@AthenaServer/api';
+
 
 export class GarageSystem {
     static init() {
-        Athena.events.vehicle.on(ATHENA_EVENTS_VEHICLE.DESTROYED, GarageSystem.handleDestroy);
+        Athena.events.vehicle.on("vehicle-destroyed", GarageSystem.handleDestroy);
     }
 
-    static handleDestroy(vehicle: alt.Vehicle) {
-        if (!vehicle || !vehicle.data) {
+    static async handleDestroy(vehicle: alt.Vehicle) {
+        if (!vehicle || !vehicle.id) {
             return;
         }
 
-        Athena.vehicle.funcs.save(vehicle, { garageIndex: null, position: { x: 0, y: 0, z: 0 } });
+        await Athena.vehicle.controls.update(vehicle);
     }
 }
