@@ -11,7 +11,8 @@
                         <div class="stack">
                             <div class="preview">
                                 <!-- Vehicle Image -->
-                                <img :src="ResolvePath(`../../assets/vehicles/${vehicle.model}.png`)" />
+                                <img :src="ResolvePath(`@plugins/images/athena-plugin-garage/${vehicle.model}.png`)" />
+                                <!-- <img :src="ResolvePath(`../../assets/vehicles/${vehicle.model}.png`)" /> -->
                                 <!-- Vehicle Model -->
                                 <div class="overline model">{{ vehicle.model }}</div>
                                 <!-- Vehicle Plate -->
@@ -24,10 +25,20 @@
                         </div>
                         <!-- Vehicle Controls -->
                         <div class="split split-full">
-                            <Button class="mt-2 fill-full-width" color="green" @click="spawn(index)">
+                            <Button
+                                class="mt-2 fill-full-width"
+                                color="green"
+                                @click="spawn(index)"
+                                v-if="vehicle.garageInfo"
+                            >
                                 {{ locales.LABEL_SPAWN }}
                             </Button>
-                            <Button class="mt-2 fill-full-width" color="red" @click="despawn(index)">
+                            <Button
+                                class="mt-2 fill-full-width"
+                                color="red"
+                                @click="despawn(index)"
+                                v-if="!vehicle.garageInfo"
+                            >
                                 {{ locales.LABEL_DESPAWN }}
                             </Button>
                         </div>
@@ -39,6 +50,9 @@
 </template>
 
 <script lang="ts">
+import WebViewEvents from '@ViewUtility/webViewEvents';
+import { OwnedVehicle } from '@AthenaShared/interfaces/vehicleOwned';
+import { GARAGE_INTERACTIONS } from '../shared/events';
 import { defineComponent, defineAsyncComponent } from 'vue';
 import DefaultLocale from './utility/defaultLocale';
 import TestData from './utility/testData';
@@ -58,14 +72,14 @@ export default defineComponent({
     },
     data() {
         return {
-            vehicles: [],
+            vehicles: [] as Array<OwnedVehicle>,
             locales: DefaultLocale,
         };
     },
     methods: {
         ResolvePath,
         relayClosePage() {
-            this.$emit('close-page', `${ComponentName}:Close`);
+            WebViewEvents.emitClose();
         },
         setLocales(localeObject) {
             this.locales = localeObject;
@@ -77,7 +91,7 @@ export default defineComponent({
             }
 
             alt.emit('play:Sound', 'SELECT', 'HUD_FRONTEND_DEFAULT_SOUNDSET');
-            alt.emit(`${ComponentName}:Spawn`, this.vehicles[index].id);
+            WebViewEvents.emitClient(GARAGE_INTERACTIONS.SPAWN, this.vehicles[index].id);
         },
         despawn(index: number) {
             if (!('alt' in window)) {
@@ -86,25 +100,20 @@ export default defineComponent({
             }
 
             alt.emit('play:Sound', 'SELECT', 'HUD_FRONTEND_DEFAULT_SOUNDSET');
-            alt.emit(`${ComponentName}:Despawn`, this.vehicles[index].id);
+            WebViewEvents.emitClient(GARAGE_INTERACTIONS.DESPAWN, this.vehicles[index].id);
         },
-        setVehicles(vehicles) {
+        setVehicles(vehicles: Array<OwnedVehicle>) {
             this.vehicles = vehicles;
         },
     },
     mounted() {
+        WebViewEvents.on(GARAGE_INTERACTIONS.SETLOCAL, this.setLocales);
+        WebViewEvents.on(GARAGE_INTERACTIONS.SETVEHICLE, this.setVehicles);
+        WebViewEvents.emitReady(ComponentName);
+
         if ('alt' in window) {
-            alt.on(`${ComponentName}:SetLocale`, this.setLocales);
-            alt.on(`${ComponentName}:SetVehicles`, this.setVehicles);
-            alt.emit(`${ComponentName}:Ready`);
-            alt.emit('ready');
         } else {
             this.setVehicles(TestData);
-        }
-    },
-    unmounted() {
-        if ('alt' in window) {
-            alt.off(`${ComponentName}:SetLocale`, this.setLocales);
         }
     },
 });

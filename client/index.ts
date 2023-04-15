@@ -27,24 +27,20 @@ class InternalFunctions implements ViewModel {
         }
 
         // Must always be called first if you want to hide HUD.
-        const view = await AthenaClient.webview.get();
-        view.on(`${PAGE_NAME}:Ready`, InternalFunctions.ready);
-        view.on(`${PAGE_NAME}:Spawn`, InternalFunctions.spawn);
-        view.on(`${PAGE_NAME}:Despawn`, InternalFunctions.despawn);
+
+        AthenaClient.webview.ready(PAGE_NAME, InternalFunctions.ready);
+        AthenaClient.webview.on(GARAGE_INTERACTIONS.SPAWN, InternalFunctions.spawn);
+        AthenaClient.webview.on(GARAGE_INTERACTIONS.DESPAWN, InternalFunctions.despawn);
         AthenaClient.webview.openPages(PAGE_NAME, true, InternalFunctions.close);
         AthenaClient.webview.focus();
         AthenaClient.webview.showCursor(true);
+
         alt.toggleGameControls(false);
         alt.Player.local.isMenuOpen = true;
     }
 
     static async close(invokeClosePage = false) {
         alt.toggleGameControls(true);
-
-        const view = await AthenaClient.webview.get();
-        view.off(`${PAGE_NAME}:Ready`, InternalFunctions.ready);
-        view.off(`${PAGE_NAME}:Spawn`, InternalFunctions.spawn);
-        view.off(`${PAGE_NAME}:Despawn`, InternalFunctions.despawn);
 
         AthenaClient.webview.unfocus();
         AthenaClient.webview.showCursor(false);
@@ -57,9 +53,8 @@ class InternalFunctions implements ViewModel {
     }
 
     static async ready() {
-        const view = await AthenaClient.webview.get();
-        view.emit(`${PAGE_NAME}:SetLocale`, LOCALE_GARAGE_VIEW);
-        view.emit(`${PAGE_NAME}:SetVehicles`, vehicles);
+        AthenaClient.webview.emit(GARAGE_INTERACTIONS.SETLOCAL, LOCALE_GARAGE_VIEW);
+        AthenaClient.webview.emit(GARAGE_INTERACTIONS.SETVEHICLE, vehicles);
     }
 
     static spawn(uid: string) {
