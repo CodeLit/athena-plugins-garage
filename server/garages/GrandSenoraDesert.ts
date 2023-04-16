@@ -1,9 +1,10 @@
 import { VEHICLE_TYPE } from '@AthenaShared/enums/vehicleTypeFlags';
 import { GarageFunctions } from '../src/view';
+import IGarage from '@AthenaPlugins/athena-plugin-garage/shared/interfaces/iGarage';
 
 const garage = {
     position: { x: 1183.4117431640625, y: 2700.958984375, z: 37.6 },
-    type: VEHICLE_TYPE.CAR,
+    types: [VEHICLE_TYPE.CAR],
     index: 'grand-senora-desert',
     parking: [
         {

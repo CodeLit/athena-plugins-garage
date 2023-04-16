@@ -1,9 +1,10 @@
 import { VEHICLE_TYPE } from '@AthenaShared/enums/vehicleTypeFlags';
 import { GarageFunctions } from '../src/view';
+import IGarage from '@AthenaPlugins/athena-plugin-garage/shared/interfaces/iGarage';
 
-const garage = {
+const garage: IGarage = {
     position: { x: -732.739501953125, y: -1311.5386962890625, z: 4.5 },
-    type: VEHICLE_TYPE.BOAT,
+    types: [VEHICLE_TYPE.BOAT],
     index: 'la-puerta-dock',
     parking: [
         {

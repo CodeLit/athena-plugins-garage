@@ -68,7 +68,8 @@ export class GarageFunctions {
     static async add(garage: IGarage) {
         alt.log(`~g~Registered Garage - ${garage.index}`);
 
-        const properTypeName = garage.type.charAt(0).toUpperCase() + garage.type.slice(1);
+        //FIXME: This is a temporary fix for the garage types.
+        const properTypeName = garage.types[0].charAt(0).toUpperCase() + garage.types[0].slice(1);
 
         Athena.controllers.interaction.append({
             position: garage.position,
@@ -144,7 +145,7 @@ export class GarageFunctions {
         }
 
         const garage = activeGarages[index];
-        const garageType = activeGarages[index].type;
+        const garageTypes = activeGarages[index].types;
 
         // 2
         alt.logWarning(`open - 2`);
@@ -174,7 +175,15 @@ export class GarageFunctions {
 
             // 5
             // Filter Vehicles by Type
-            if (!isVehicleType(data.type, garageType)) {
+            let typeValid = false;
+            for (let i = 0; i < garageTypes.length; i++) {
+                const type = garageTypes[i];
+                if (isVehicleType(data.type, type)) {
+                    typeValid = true;
+                }
+            }
+
+            if (!typeValid) {
                 return false;
             }
 
