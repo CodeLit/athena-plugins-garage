@@ -16,12 +16,12 @@ cd src/core/plugins
 **SSH**
 
 ```
-git clone git@github.com:Athena-Roleplay-Framework/athena-plugin-garage.git
+git clone git@github.com:taxPNG/athena-plugins-garage-v5.git
 ```
 
 **HTTPS**
 ```
-git clone https://github.com/Athena-Roleplay-Framework/athena-plugin-garage
+git clone https://github.com/taxPNG/athena-plugins-garage-v5
 ```
 
 4. Start the Server
