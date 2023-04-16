@@ -9,7 +9,7 @@ import { LOCALE_KEYS } from '@AthenaShared/locale/languages/keys';
 import { LocaleController } from '@AthenaShared/locale/locale';
 import * as Athena from '@AthenaServer/api';
 import { GarageSpaceShape } from '@AthenaServer/extensions/extColshape';
-import IGarage from '@AthenaPlugins/athena-plugin-garage/shared/interfaces/iGarage';
+import IGarage from '../../shared/interfaces/iGarage';
 
 const PARKING_SPACE_DIST_LIMIT = 5;
 const GarageUsers = {};
@@ -308,7 +308,7 @@ export class GarageFunctions {
         //     alt.emitClient(player, GARAGE_INTERACTIONS.CLOSE);
         //     return;
         // }
-
+        
         // Get the garage terminal information.
         const shopIndex = GarageUsers[player.id];
         const index = activeGarages.findIndex((garage) => garage.index === shopIndex);
@@ -422,5 +422,7 @@ export class GarageFunctions {
         // After setting the garage index. Despawn the vehicle.
         Athena.vehicle.despawn.one(vehicle.id);
         Athena.player.emit.soundFrontend(player, 'Hack_Success', 'DLC_HEIST_BIOLAB_PREP_HACKING_SOUNDS');
+
+        alt.emitClient(player, GARAGE_INTERACTIONS.CLOSE, true);
     }
 }
