@@ -16,12 +16,12 @@ cd src/core/plugins
 **SSH**
 
 ```
-git clone git@github.com:taxPNG/athena-plugins-garage-v5.git
+git clone git@github.com:taxPNG/athena-plugins-garage.git
 ```
 
 **HTTPS**
 ```
-git clone https://github.com/taxPNG/athena-plugins-garage-v5
+git clone https://github.com/taxPNG/athena-plugins-garage
 ```
 
 4. Start the Server
