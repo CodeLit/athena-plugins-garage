@@ -1,5 +1,5 @@
-import { VEHICLE_TYPE } from '@AthenaShared/enums/vehicleTypeFlags';
-import { GarageFunctions } from '../src/view';
+import { VEHICLE_TYPE } from '@AthenaShared/enums/vehicleTypeFlags.js';
+import { GarageFunctions } from '../src/view.js';
 import IGarage from '@AthenaPlugins/athena-plugin-garage/shared/interfaces/iGarage';
 
 const garage = {

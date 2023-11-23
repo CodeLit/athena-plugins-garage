@@ -1,15 +1,15 @@
 import * as alt from 'alt-server';
 
-import { GARAGE_INTERACTIONS } from '../../shared/events';
-import { LOCALE_GARAGE_FUNCS } from '../../shared/locales';
-import { isVehicleType } from '@AthenaShared/enums/vehicleTypeFlags';
-import { VehicleData } from '@AthenaShared/information/vehicles';
-import { OwnedVehicle } from '@AthenaShared/interfaces/vehicleOwned';
-import { LOCALE_KEYS } from '@AthenaShared/locale/languages/keys';
-import { LocaleController } from '@AthenaShared/locale/locale';
-import * as Athena from '@AthenaServer/api';
-import { GarageSpaceShape } from '@AthenaServer/extensions/extColshape';
-import IGarage from '../../shared/interfaces/iGarage';
+import { GARAGE_INTERACTIONS } from '../../shared/events.js';
+import { LOCALE_GARAGE_FUNCS } from '../../shared/locales.js';
+import { isVehicleType } from '@AthenaShared/enums/vehicleTypeFlags.js';
+import { VehicleData } from '@AthenaShared/information/vehicles.js';
+import { OwnedVehicle } from '@AthenaShared/interfaces/vehicleOwned.js';
+import { LOCALE_KEYS } from '@AthenaShared/locale/languages/keys.js';
+import { LocaleController } from '@AthenaShared/locale/locale.js';
+import * as Athena from '@AthenaServer/api/index.js';
+import { GarageSpaceShape } from '@AthenaServer/extensions/extColshape.js';
+import IGarage from '../../shared/interfaces/iGarage.js';
 
 const PARKING_SPACE_DIST_LIMIT = 5;
 const GarageUsers = {};

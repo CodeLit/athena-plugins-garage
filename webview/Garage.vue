@@ -55,7 +55,7 @@
 <script lang="ts">
 import WebViewEvents from '@ViewUtility/webViewEvents';
 import { OwnedVehicle } from '@AthenaShared/interfaces/vehicleOwned';
-import { GARAGE_INTERACTIONS } from '../shared/events';
+import { GARAGE_INTERACTIONS } from '../shared/events.js';
 import { defineComponent, defineAsyncComponent } from 'vue';
 import DefaultLocale from './utility/defaultLocale';
 import TestData from './utility/testData';

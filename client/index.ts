@@ -1,9 +1,9 @@
 import * as alt from 'alt-client';
-import * as AthenaClient from '@AthenaClient/api';
-import { OwnedVehicle } from '@AthenaShared/interfaces/vehicleOwned';
-import ViewModel from '@AthenaClient/models/viewModel';
-import { GARAGE_INTERACTIONS } from '../shared/events';
-import { LOCALE_GARAGE_VIEW } from '../shared/locales';
+import * as AthenaClient from '@AthenaClient/api/index.js';
+import { OwnedVehicle } from '@AthenaShared/interfaces/vehicleOwned.js';
+import ViewModel from '@AthenaClient/models/viewModel.js';
+import { GARAGE_INTERACTIONS } from '../shared/events.js';
+import { LOCALE_GARAGE_VIEW } from '../shared/locales.js';
 
 const PAGE_NAME = 'Garage';
 

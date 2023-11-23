@@ -1,8 +1,8 @@
 import * as alt from 'alt-server';
-import * as Athena from '@AthenaServer/api';
-import { GarageFunctions } from './src/view';
-import './src/garages';
-import { GarageSystem } from './src/system';
+import * as Athena from '@AthenaServer/api/index.js';
+import { GarageFunctions } from './src/view.js';
+import './src/garages.js';
+import { GarageSystem } from './src/system.js';
 
 const PLUGIN_NAME = 'Athena Garages';
 
